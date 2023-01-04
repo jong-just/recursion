@@ -13,20 +13,51 @@ temp_array = [73, 91, 71, 27, 85, 96, 5, 40, 17, 44, 47,
 module MySorts
   def merge_sort(array)
     if array.size < 2
-      p array
+      # p array
       return
     end
+
+    # halving the arrays
     half_point = (array.size/2)
     temp_array_left = array[0..half_point-1]
     temp_array_right = array[(half_point)..array.size-1]
-    merge_sort(temp_array_left)
-    merge_sort(temp_array_right)
+
+    # recursive call
+    p merge_sort(temp_array_left)
+    p merge_sort(temp_array_right)
+    puts "Left: #{temp_array_left}"
+    puts "Right: #{temp_array_right}"
 
 
-    # p temp_array_left, temp_array_right
+    # merging?
+    i = 0
+    j = 0
+    left = temp_array_left.size
+    right = temp_array_right.size
+    temp_array = []
+
+    until j == right && i == left do
+      puts "Comparing || Left: #{temp_array_left[i]} Right: #{temp_array_right[j]}"
+      if temp_array_left[i] == nil
+        temp_array << temp_array_right[j]
+        j+=1
+      elsif temp_array_right[j] == nil
+        temp_array << temp_array_left[i]
+        i+=1
+      elsif temp_array_left[i] > temp_array_right[j]
+        temp_array << temp_array_right[j]
+        j+=1
+      elsif temp_array_left[i] < temp_array_right[j]
+        temp_array << temp_array_left[i]
+        i+=1
+      end
+      puts "Outputted Array: #{temp_array} i: #{i} / #{left} j: #{j} / #{right}\n \n"
+    end
+
+    return temp_array
   end
 end
 
 include MySorts
 
-merge_sort(rand_array)
+puts "Sorted: #{merge_sort(rand_array)}"
