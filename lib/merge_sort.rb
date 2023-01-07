@@ -20,9 +20,6 @@ module MySorts
     # recursive call
     sorted_array_left = merge_sort(temp_array_left)
     sorted_array_right = merge_sort(temp_array_right)
-    puts "Left: #{temp_array_left}"
-    puts "Right: #{temp_array_right}"
-
 
     # merging
     i = 0
@@ -33,7 +30,6 @@ module MySorts
     
     # merge logic
     until j == right && i == left do
-      puts "Comparing || Left: #{sorted_array_left[i]} Right: #{sorted_array_right[j]}"
       if sorted_array_left[i] == nil
         temp_array << sorted_array_right[j]
         j+=1
@@ -47,7 +43,6 @@ module MySorts
         temp_array << sorted_array_left[i]
         i+=1
       end
-      puts "Outputted Array: #{temp_array} i: #{i} / #{left} j: #{j} / #{right}\n \n"
     end
 
     return temp_array
@@ -55,5 +50,5 @@ module MySorts
 end
 
 include MySorts
-
+puts "Original: #{big_array}"
 puts "Sorted: #{merge_sort(big_array)}"
